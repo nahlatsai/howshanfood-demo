@@ -1,0 +1,544 @@
+$global-max-width: 100%;
+$primary-color: #C79F62;
+
+
+$header1-size: 48px;
+$header2-size: 30px;
+$header3-size: 24px;
+$header4-size: 18px;
+$header5-size: 14px;
+
+$pc-l-media: 1200px;
+$pcs-l-media: 1199px;
+$pc-media: 992px;
+$pcs-media: 991px;
+$pad-media: 768px;
+$pads-media: 767px;
+$phone-media: 576px;
+$phones-media: 575px;
+
+
+@mixin pcl-width() {
+  // xl
+  @media all and (min-width: $pc-l-media) {
+    @content;
+  }
+}
+@mixin pc-width() {
+  // lg
+  @media all and (min-width: $pc-media) {
+    @content;
+  }
+}
+@mixin padl-width() {
+  // md
+  @media all and (min-width: $pad-media)  {
+    @content; //大於768就會吃CSS
+  }
+}
+@mixin pad-width() {
+  // sm
+  @media all and (min-width: $phone-media) {
+    @content;
+  }
+}
+@mixin phone-width() {
+  // xs
+  @media all and (max-width: $phone-media) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  font-family: 'Raleway', '微軟正黑體', sans-serif;
+}
+
+.wow { visibility: hidden; }
+
+html, body {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+}
+
+section {
+  padding: relative;
+  top: 92px;
+}
+
+.header {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 999;
+  
+  background: white;
+  opacity: 0.9;
+  
+  &.mobile {
+    display: block;
+    background: white;
+    overflow: hidden;
+    
+    @include pc-width {
+      display: none;
+    }
+    
+    &.open {
+      height: 440px;
+    }
+    
+    .menu-icon {
+      width: 32px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2px 0;
+      cursor: pointer;
+
+      .menu-line {
+        width: 100%;
+        height: 2px;
+        display: block;
+        background: $primary-color;
+        border-radius: 25%;
+        transition: all 0.2s; //讓漢堡有位移、旋轉過度效果的動畫
+      }
+      &.close-icon {
+        span:nth-child(1) {
+          transform: translateY(12px) rotate(45deg);
+        }
+        span:nth-child(2) {
+          opacity:0;
+        }
+        span:nth-child(3) {
+          transform: translateY(-12px) rotate(-45deg);
+        }
+      }
+    }
+    .main-menu {
+      margin-top: 16px;
+      
+      .main-navigation {
+       max-width: $global-max-width;
+       margin: auto;
+       background: #ddd;
+      }
+      .main-navigation ul {
+       list-style: none;
+       margin: 0;
+        
+        li {
+          padding: 12px 8px;
+          border-bottom: 1px solid white;
+          transition: all 0.3s;
+          
+          a{
+            margin-left: 16px;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            display: block;//將a變成區塊，才能做出hover後向右移的效果
+            text-decoration: none;//設定後，滑鼠指到才不會有底線出現
+            transition: all 0.3s;
+            
+            &:hover {
+              color: $primary-color;
+              transform: translateX(8px);//滑鼠滑到向右移
+            }
+          }
+        }
+      }
+    }
+  }
+    .col-2 {
+      padding: 0;
+    }
+    
+    &.web {
+    display: none;
+    overflow: hidden;
+    @include pc-width {
+      display: block;
+    }
+    
+    .main-navigation ul {
+      display: flex;
+      height: 100%;
+      text-decoration:none;
+      justify-content: space-between;
+      list-style: none;
+      margin: 0;
+      }
+
+    .main-navigation ul li a {
+      text-decoration: none;
+      color: $primary-color;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .main-tool {
+      display: flex;
+      height: 90px;//為何寫趴數100撐不起來?
+      margin-left: auto;
+      justify-content: space-around;
+      background: $primary-color;
+      align-items: center;
+      padding: 0;
+
+      .nav-tool {
+        cursor: pointer;
+      }
+
+      .fas {
+        color: white;
+      }
+    }
+  }
+}
+
+.container {
+  max-width: $global-max-width;
+}
+
+.logo {
+  padding: 10px;
+}
+
+// .hero-section {
+//   position: relative;
+//   // top: 92px;
+// }
+
+
+
+/* BOOTSTRAP Carousel */
+.carousel-indicators li {
+  border: 1px solid white;
+  width: 8px;
+  height: 8px;
+  margin: 0 6px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.carousel-indicators .active {
+  background: white;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  display: none;  
+}
+
+h1.title {
+  margin: 50px 0;
+  font-size: $header2-size;
+  color: $primary-color;
+  font-weight: 800;
+  text-align: center;
+  width: 100%;
+}
+// .background-info {
+//   position:relativ;
+//   // top: 92px;
+// }
+
+.bg-info-cook {
+  // padding-top: 47px;
+  margin-bottom: 67px;
+  
+  .inner {
+   // padding-bottom: 159px;
+    
+    .about {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin: 0 20px;
+      // padding-bottom: 159px;
+      }
+    
+    .cook-footer {
+      position: absolute;
+      z-index: 2;
+      margin: 0 auto;
+      top: 220px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      
+      img {
+        min-width: 100%;
+        height: auto;
+      }
+
+      &.fixed {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+      }
+
+      &.bottom {
+       position: absolute;
+       top: auto;
+       bottom: 0;
+      }
+    }
+  }
+}
+
+bg-info {
+    padding-top: 47px;
+    margin-bottom: 67px;
+}
+
+
+//熱銷主打
+// .gallery {
+//   background: #EEE;
+// }
+
+.gallery-cell {
+  width: 30%;
+  height: 450px;
+  margin-right: 10px;
+  counter-increment: gallery-cell;
+  background: #FFF4A3;
+  border-radius: 10px;
+  text-align: center;
+  
+  img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+  }
+  
+  .item {
+    width: 100%;
+    height: 80px;
+  }
+  
+  h3.intro {
+    text-align: center;
+    color:$primary-color;
+    font-weight: 800;
+    padding: 10px 10px;
+    margin: 0;
+  }
+  
+  p.description {
+    text-align: left;
+    padding: 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+  
+  button.addtocart {
+    display: inline-block;
+    height: 30px;
+    width: 100px;
+    background: $primary-color;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 15px;
+    
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
+.flickity-prev-next-button.next {
+  top: 150px;  
+  right: 10px;
+}
+
+.flickity-prev-next-button.previous {
+  top: 150px;
+  left: 10px;
+}
+
+
+.share-container {
+    display: flex;//為了讓圖與對話框可以並列
+    align-items: center;
+    
+    .share-person {
+      margin: 15px 15px;
+      //設定寬高，讓圖片呈現在合適的大小
+      width: 200px;
+      height: 200x;
+      
+      img {
+        //父層有設定寬高，圖片還要再依下方方式設定
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .share-content {
+      display:inline-block; //有設定此屬性，block大小會依據內容和目前寬來變換高度
+      vertical-align: middle; //讓文字垂直於對話框中間
+      background: #fff;
+      margin: 10px 20px; //讓對話框間有空隙
+      padding: 15px 20px;
+      font-size: 14px;
+      line-height: 2; //隨意抓的
+      letter-spacing: 2.5px; //字元間距
+      border-radius: 15px;
+      box-shadow: 6px 6px 14px rgba(0,0,0,0.15);
+    }
+  }
+
+.menu-card {
+  justify-content: space-around;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  
+  .menu-item {
+    height: 200px;
+    top: 0;
+    // margin: 24px;
+    transform:scale(1,1);
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 12px;
+    
+    img {
+      height: auto;
+      width: 100%;
+      // overflow: hidden;
+      object-fit: contain;
+      transition: all 1s;
+      
+      &:hover {
+      transform:scale(1.2,1.2);
+      }
+    }
+  }
+  
+//   .item-one {
+//     background-image: url('');
+//     border-radius: 15px;
+//     &:hover {
+//       transform:scale(1.2,1.2);
+//     }
+//   }
+
+//   .item-two {
+//     width: 100%;
+//     height: auto;
+//     padding: 24px;
+//     background-image:
+//       url('');
+//     overflow: hidden;
+
+//     &:hover {
+//       transform:scale(1.2,1.2);
+//     }
+//   }
+
+//   .item-three {
+//       background-image: url('');
+      
+//       &:hover {
+//         transform:scale(1.2,1.2);
+//       }
+//     }
+}
+
+.footer {
+  padding: 50px;
+  background: $primary-color;
+  
+  .basic-info {
+     text-align: center;
+     font-size: $header5-size;
+     color: white;
+   }
+
+  .social-info {
+    padding-top: 50px;
+
+    .fb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      color: white;
+    }
+
+    .ig {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      color: white;
+    }
+
+    .blog {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      display: flex;
+
+
+      img {
+        width: auto;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+
+.scrollup-btn {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  text-decoration: none;
+  
+  width: 48px;
+  height: 48px;
+  border: 2px solid white;
+  border-radius: 6px;
+  background: $primary-color;
+  
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  cursor: pointer;
+  
+  opacity: 0;
+  transition: all 0.3s;
+  
+  i {
+    display: block;
+    color: white;
+    font-size: 24px;
+  }
+  
+  &.show {
+    opacity: 1;
+  }
+}
+
